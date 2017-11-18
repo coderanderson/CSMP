@@ -5,25 +5,40 @@ import java.util.*;
 
 public class Student implements StudentRMI{
     int me;
-    String[] peers;
-    int[] ports;
+    String EmtPeer;
+    String[] StuPeers;
+    String[] ProPeers;
+    int EmtPort;
+    int[] StuPorts;
+    int[] ProPorts;
     ArrayList<ArrayList<Pair>> prerequisites;
     int[] pref;
     int current;
     boolean existCSM;
     int[] rank;
+    boolean coupled;
 
     Registry registry;
     StudentRMI stub;
 
-    public Student(int me, String[] peers, int[] ports, ArrayList<ArrayList<Pair>> prerequisites, int[] pref) {
+    public Student(int me, String EmtPeer, String[] StuPeers, String[] ProPeers,
+                   int EmtPort, int[] StuPorts, int[] ProPorts,
+                   ArrayList<ArrayList<Pair>> prerequisites, int[] pref) {
         this.me = me;
-        this.peers = peers;
-        this.ports = ports;
+
+        this.EmtPeer = EmtPeer;
+        this.StuPeers = StuPeers;
+        this.ProPeers = ProPeers;
+
+        this.EmtPort = EmtPort;
+        this.StuPorts = StuPorts;
+        this.ProPorts = ProPorts;
+
         this.prerequisites = prerequisites;
         this.pref = pref;
         this.current = 0;
         this.existCSM = false;
+        this.coupled = false;
 
         rank = new int[pref.length];
         for(int i = 0; i < pref.length; i++) {
@@ -31,21 +46,24 @@ public class Student implements StudentRMI{
         }
 
         try{
-            System.setProperty("java.rmi.server.hostname", this.peers[this.me]);
-            registry = LocateRegistry.createRegistry(this.ports[this.me]);
-            stub = (StudentRMI) UnicastRemoteObject.exportObject(this, this.ports[this.me]);
+            System.setProperty("java.rmi.server.hostname", this.StuPeers[this.me]);
+            registry = LocateRegistry.createRegistry(this.StuPorts[this.me]);
+            stub = (StudentRMI) UnicastRemoteObject.exportObject(this, this.StuPorts[this.me]);
             registry.rebind("Student", stub);
         } catch(Exception e){
             e.printStackTrace();
         }
     }
 
-    public void CallStudent(Message msg, int id){
+    public void CallStudent(String rmi, Message msg, int id){
         StudentRMI stub;
         try{
-            Registry registry = LocateRegistry.getRegistry(this.ports[id]);
+            Registry registry = LocateRegistry.getRegistry(this.StuPorts[id]);
             stub = (StudentRMI) registry.lookup("Student");
-            stub.advance(msg);
+            if(rmi.equals("advance"))
+                stub.advance(msg);
+            else if(rmi.equals("decide"))
+                stub.decide(msg);
         } catch(Exception e){
             System.out.println("fail");
             e.printStackTrace();
@@ -53,12 +71,29 @@ public class Student implements StudentRMI{
     }
 
 
-    public void CallProfessor(Message msg, int id) {
+    public void CallProfessor(String rmi, Message msg, int id) {
         ProfessorRMI stub;
         try{
-            Registry registry=LocateRegistry.getRegistry(this.ports[100 + id]);
+            Registry registry=LocateRegistry.getRegistry(this.ProPorts[id]);
             stub=(ProfessorRMI) registry.lookup("Professor");
-            stub.advance(msg);
+            if(rmi.equals("reject"))
+                stub.propose(msg);
+            else if(rmi.equals("decide"))
+                stub.decide(msg);
+        } catch(Exception e) {
+            System.out.println("fail");
+        }
+    }
+
+    public void CallEnvironment(String rmi, Message msg) {
+        EnvironmentRMI stub;
+        try{
+            Registry registry=LocateRegistry.getRegistry(this.EmtPort);
+            stub=(EnvironmentRMI) registry.lookup("Environment");
+            if(rmi.equals("done"))
+                stub.done(msg);
+            else if(rmi.equals("undone"))
+                stub.undone(msg);
         } catch(Exception e) {
             System.out.println("fail");
         }
@@ -68,32 +103,49 @@ public class Student implements StudentRMI{
         if(pref[current] == msg.getIndex()) {
             if(current == pref.length - 1) {
                 System.out.println("no constrained stable marriage possible");
+                for(int i = 0; i < StuPorts.length; i++) {
+                    CallProfessor("decide", new Message(0), i);
+                }
             } else {
                 current++;
                 for(Pair pair: prerequisites.get(current)) {
-                    CallStudent(new Message(pair.getProfessor()), pair.getStudent());
+                    CallStudent("advance", new Message(pair.getProfessor()), pair.getStudent());
                 }
-                CallProfessor(new Message(me), pref[current]);
+                CallProfessor("reject", new Message(me), pref[current]);
             }
+        }
+    }
+
+    public void accept(Message msg) {
+        if(msg.getIndex() == current) {
+            CallEnvironment("done", new Message(me));
+            this.coupled = true;
         }
     }
 
     public void advance(Message msg) {
+        if(rank[msg.getIndex()] > current && coupled) {
+            CallEnvironment("undone", new Message(me));
+            coupled = false;
+        }
         while(rank[msg.getIndex()] > current) {
             current++;
             for(Pair pair: prerequisites.get(current)) {
-                CallStudent(new Message(pair.getProfessor()), pair.getStudent());
+                CallStudent("advance", new Message(pair.getProfessor()), pair.getStudent());
             }
         }
-        CallProfessor(new Message(me), pref[current]);
-//        //for testing communication
-//        System.out.println("answer");
+        CallProfessor("reject", new Message(me), pref[current]);
     }
 
     public void initiate(Message msg) {
         for(Pair pair: prerequisites.get(current)) {
-            CallStudent(new Message(pair.getProfessor()), pair.getStudent());
+            CallStudent("advance", new Message(pair.getProfessor()), pair.getStudent());
         }
-        CallProfessor(new Message(me), pref[current]);
+        CallProfessor("reject", new Message(me), pref[current]);
+    }
+
+    public void decide(Message msg) {
+        existCSM = true;
+        CallProfessor("decide", new Message(me), current);
     }
 }
