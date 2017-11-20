@@ -1,3 +1,5 @@
+package Distributed;
+
 import java.rmi.RemoteException;
 import java.rmi.Remote;
 

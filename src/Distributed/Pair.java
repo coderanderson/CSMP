@@ -1,3 +1,5 @@
+package Distributed;
+
 public class Pair {
     private int student;
     private int professor;

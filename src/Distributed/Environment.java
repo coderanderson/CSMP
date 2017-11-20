@@ -1,43 +1,48 @@
+package Distributed;
+
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
 public class Environment implements EnvironmentRMI {
-    int me;
-    String[] peers;
-    int[] ports;
+    String EmtPeer;
+    int EmtPort;
     int numOfStudent;
+    int[] StuPorts;
     int studentCounter;
     boolean isDone;
 
     Registry registry;
     EnvironmentRMI myStub;
 
-    public Environment(int me, String[] peers, int[] ports, int numOfStudent) {
-        this.me = me;
-        this.peers = peers;
-        this.ports = ports;
+    public Environment(String EmtPeer, int EmtPort, int numOfStudent, int[] StuPorts) {
+        this.EmtPeer = EmtPeer;
+        this.EmtPort = EmtPort;
         this.numOfStudent = numOfStudent;
+        this.StuPorts = StuPorts;
         this.studentCounter = 0;
         this.isDone = false;
 
         try {
-            System.setProperty("java.rmi.server.hostname", this.peers[this.me]);
-            registry = LocateRegistry.createRegistry(this.ports[this.me]);
-            myStub = (EnvironmentRMI) UnicastRemoteObject.exportObject(this, this.ports[this.me]);
+            System.setProperty("java.rmi.server.hostname", this.EmtPeer);
+            registry = LocateRegistry.createRegistry(this.EmtPort);
+            myStub = (EnvironmentRMI) UnicastRemoteObject.exportObject(this, this.EmtPort);
             registry.rebind("Environment", myStub);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void CallStudent(Message msg, int id) {
+    public void CallStudent(String rmi, Message msg, int id) {
         StudentRMI stub;
         try{
-            Registry registry = LocateRegistry.getRegistry(this.ports[id]);
+            Registry registry = LocateRegistry.getRegistry(this.StuPorts[id]);
             stub = (StudentRMI) registry.lookup("Student");
-            stub.initiate(msg);
+            if(rmi.equals("initiate"))
+                stub.initiate(msg);
+            else if(rmi.equals("decide"))
+                stub.decide(msg);
         } catch(Exception e){
             System.out.println("fail");
             e.printStackTrace();
@@ -45,9 +50,14 @@ public class Environment implements EnvironmentRMI {
     }
 
     public void done(Message msg) {
-        if(++studentCounter == numOfStudent) {
+        System.out.println("" + msg.getIndex() + " is done");
+        ++studentCounter;
+        if(studentCounter == numOfStudent) {
             isDone = true;
             System.out.println("Stable marriage found.");
+            for(int i = 0; i < numOfStudent; i++) {
+                CallStudent("decide", new Message(0), i);
+            }
         }
     }
 
@@ -57,9 +67,10 @@ public class Environment implements EnvironmentRMI {
 
     public void startComputation() {
         for(int id = 0; id < numOfStudent; id++) {
+            final int i = id;
             (new Thread("Student " + id + " awake.") {
                 public void run() {
-                    CallStudent(new Message(me), id);
+                    CallStudent("initiate", new Message(0), i);
                 }
             }).start();
         }

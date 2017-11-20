@@ -1,3 +1,5 @@
+package Distributed;
+
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
@@ -101,11 +103,10 @@ public class Student implements StudentRMI{
 
     public void reject(Message msg) {
         if(pref[current] == msg.getIndex()) {
+            if(coupled)
+                CallEnvironment("undone", new Message(0));
             if(current == pref.length - 1) {
                 System.out.println("no constrained stable marriage possible");
-                for(int i = 0; i < StuPorts.length; i++) {
-                    CallProfessor("decide", new Message(0), i);
-                }
             } else {
                 current++;
                 for(Pair pair: prerequisites.get(current)) {
@@ -117,7 +118,8 @@ public class Student implements StudentRMI{
     }
 
     public void accept(Message msg) {
-        if(msg.getIndex() == current) {
+        System.out.println("receive accept");
+        if(msg.getIndex() == pref[current]) {
             CallEnvironment("done", new Message(me));
             this.coupled = true;
         }
@@ -138,6 +140,7 @@ public class Student implements StudentRMI{
     }
 
     public void initiate(Message msg) {
+        System.out.println(me);
         for(Pair pair: prerequisites.get(current)) {
             CallStudent("advance", new Message(pair.getProfessor()), pair.getStudent());
         }
@@ -145,7 +148,8 @@ public class Student implements StudentRMI{
     }
 
     public void decide(Message msg) {
+        System.out.println("Student " + me + " is decided, matched with Professor " + pref[current]);
         existCSM = true;
-        CallProfessor("decide", new Message(me), current);
+        CallProfessor("decide", new Message(me), pref[current]);
     }
 }
