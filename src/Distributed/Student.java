@@ -39,7 +39,7 @@ public class Student implements StudentRMI{
         this.prerequisites = prerequisites;
         this.pref = pref;
         this.current = 0;
-        this.existCSM = false;
+        this.existCSM = true;
         this.coupled = false;
 
         rank = new int[pref.length];
@@ -66,6 +66,8 @@ public class Student implements StudentRMI{
                 stub.advance(msg);
             else if(rmi.equals("decide"))
                 stub.decide(msg);
+            else if(rmi.equals("notify"))
+                stub.notify(msg);
         } catch(Exception e){
             System.out.println("fail");
             e.printStackTrace();
@@ -82,6 +84,8 @@ public class Student implements StudentRMI{
                 stub.propose(msg);
             else if(rmi.equals("decide"))
                 stub.decide(msg);
+            else if(rmi.equals("notify"))
+                stub.notify(msg);
         } catch(Exception e) {
             System.out.println("fail");
         }
@@ -103,13 +107,24 @@ public class Student implements StudentRMI{
 
     public void reject(Message msg) {
         if(pref[current] == msg.getIndex()) {
-            if(coupled)
-                CallEnvironment("undone", new Message(0));
+            if(coupled) {
+                CallEnvironment("undone", new Message(me));
+                coupled = false;
+            }
             if(current == pref.length - 1) {
                 System.out.println("no constrained stable marriage possible");
+                for(int i = 0; i < StuPorts.length; i++) {
+                    if(i == me) continue;
+                    CallStudent("notify", new Message(me), i);
+                }
+                for(int i = 0; i < ProPorts.length; i++) {
+                    CallProfessor("notify", new Message(me), i);
+                }
+
             } else {
                 current++;
                 for(Pair pair: prerequisites.get(current)) {
+                    System.out.println("send advance");
                     CallStudent("advance", new Message(pair.getProfessor()), pair.getStudent());
                 }
                 CallProfessor("reject", new Message(me), pref[current]);
@@ -120,13 +135,17 @@ public class Student implements StudentRMI{
     public void accept(Message msg) {
         System.out.println("receive accept");
         if(msg.getIndex() == pref[current]) {
-            CallEnvironment("done", new Message(me));
+            System.out.println("" + me + " is done with " + pref[current]);
             this.coupled = true;
+            CallEnvironment("done", new Message(me));
         }
     }
 
     public void advance(Message msg) {
+        System.out.println("receive advance");
+        System.out.println("" + rank[msg.getIndex()] + " , " + current + " , " + coupled);
         if(rank[msg.getIndex()] > current && coupled) {
+            System.out.println("send undone");
             CallEnvironment("undone", new Message(me));
             coupled = false;
         }
@@ -151,5 +170,10 @@ public class Student implements StudentRMI{
         System.out.println("Student " + me + " is decided, matched with Professor " + pref[current]);
         existCSM = true;
         CallProfessor("decide", new Message(me), pref[current]);
+    }
+
+    public void notify(Message msg) {
+        this.existCSM = false;
+        System.out.println("no constrained stable marriage possible");
     }
 }

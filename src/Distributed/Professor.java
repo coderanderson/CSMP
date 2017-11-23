@@ -15,6 +15,7 @@ public class Professor implements ProfessorRMI{
     int[] pref;
     int[] rank;
     int partner;
+    boolean existCSM;
 
     Registry registry;
     ProfessorRMI myStub;
@@ -27,6 +28,7 @@ public class Professor implements ProfessorRMI{
         this.ProPorts = ProPorts;
         this.pref = pref;
         this.partner = -1;
+        this.existCSM = true;
 
         rank = new int[pref.length];
         for(int i = 0; i < pref.length; i++) {
@@ -80,5 +82,10 @@ public class Professor implements ProfessorRMI{
 
     public void decide(Message msg) {
         System.out.println("Professor " + me + " is decided, matched with Student " + partner);
+    }
+
+    public void notify(Message msg) {
+        existCSM = false;
+        System.out.println("no constrained stable marriage possible");
     }
 }

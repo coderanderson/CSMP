@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62023619-7d73-4040-af49-6834813d3036" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Environment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/EnvironmentRMI.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Message.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Pair.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Professor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/ProfessorRMI.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Student.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/StudentRMI.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/StudentTest.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Distributed/Environment.java" afterPath="$PROJECT_DIR$/src/Distributed/Environment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Distributed/Professor.java" afterPath="$PROJECT_DIR$/src/Distributed/Professor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Distributed/ProfessorRMI.java" afterPath="$PROJECT_DIR$/src/Distributed/ProfessorRMI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Distributed/Student.java" afterPath="$PROJECT_DIR$/src/Distributed/Student.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Distributed/StudentRMI.java" afterPath="$PROJECT_DIR$/src/Distributed/StudentRMI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Distributed/StudentTest.java" afterPath="$PROJECT_DIR$/src/Distributed/StudentTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,33 +17,72 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/CSMP$StudentTest__1_.coverage" NAME="StudentTest (1) Coverage Results" MODIFIED="1511388478263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Distributed.*</FILTER>
+    </SUITE>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="StudentTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Distributed/StudentTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="1422">
+              <caret line="79" column="2" lean-forward="true" selection-start-line="79" selection-start-column="2" selection-end-line="79" selection-end-column="2" />
+              <folding>
+                <element signature="e#587#604#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Environment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Distributed/Environment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="984">
+              <caret line="71" column="56" lean-forward="false" selection-start-line="71" selection-start-column="56" selection-end-line="71" selection-end-column="56" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Student.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Distributed/Student.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="554">
+              <caret line="176" column="70" lean-forward="true" selection-start-line="176" selection-start-column="70" selection-end-line="176" selection-end-column="70" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SequentialCSMP.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Sequential/SequentialCSMP.java">
+      <file leaf-file-name="StudentRMI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Distributed/StudentRMI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="23" column="36" lean-forward="true" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+            <state relative-caret-position="180">
+              <caret line="11" column="15" lean-forward="false" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StudentOptimal.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Sequential/StudentOptimal.java">
+      <file leaf-file-name="Professor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Distributed/Professor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1750">
-              <caret line="37" column="47" lean-forward="false" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="47" />
+            <state relative-caret-position="581">
+              <caret line="88" column="70" lean-forward="false" selection-start-line="88" selection-start-column="70" selection-end-line="88" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProfessorRMI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Distributed/ProfessorRMI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="8" column="52" lean-forward="false" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -69,6 +104,9 @@
       <find>me</find>
       <find>prerequisites</find>
       <find>updatePrerequisite</find>
+      <find>send advance</find>
+      <find>undone</find>
+      <find>send undone</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -90,17 +128,17 @@
         <option value="$PROJECT_DIR$/src/Professor.java" />
         <option value="$PROJECT_DIR$/src/Environment.java" />
         <option value="$PROJECT_DIR$/src/Student.java" />
-        <option value="$PROJECT_DIR$/src/Distributed/Environment.java" />
         <option value="$PROJECT_DIR$/src/Distributed/EnvironmentRMI.java" />
         <option value="$PROJECT_DIR$/src/Distributed/Message.java" />
         <option value="$PROJECT_DIR$/src/Distributed/Pair.java" />
-        <option value="$PROJECT_DIR$/src/Distributed/Professor.java" />
-        <option value="$PROJECT_DIR$/src/Distributed/ProfessorRMI.java" />
-        <option value="$PROJECT_DIR$/src/Distributed/Student.java" />
-        <option value="$PROJECT_DIR$/src/Distributed/StudentRMI.java" />
-        <option value="$PROJECT_DIR$/src/Distributed/StudentTest.java" />
         <option value="$PROJECT_DIR$/src/Sequential/StudentOptimal.java" />
         <option value="$PROJECT_DIR$/src/Sequential/SequentialCSMP.java" />
+        <option value="$PROJECT_DIR$/src/Distributed/StudentRMI.java" />
+        <option value="$PROJECT_DIR$/src/Distributed/ProfessorRMI.java" />
+        <option value="$PROJECT_DIR$/src/Distributed/Professor.java" />
+        <option value="$PROJECT_DIR$/src/Distributed/Environment.java" />
+        <option value="$PROJECT_DIR$/src/Distributed/Student.java" />
+        <option value="$PROJECT_DIR$/src/Distributed/StudentTest.java" />
       </list>
     </option>
   </component>
@@ -183,7 +221,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.SequentialCSMP">
+  <component name="RunManager" selected="Application.StudentTest (1)">
     <configuration name="SequentialCSMP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -339,8 +377,8 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Application.SequentialCSMP" />
-        <item index="1" class="java.lang.String" itemvalue="Application.StudentTest (1)" />
+        <item index="0" class="java.lang.String" itemvalue="Application.StudentTest (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Application.SequentialCSMP" />
         <item index="2" class="java.lang.String" itemvalue="Application.StudentTest" />
       </list>
     </recent_temporary>
@@ -375,6 +413,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25612053" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946634" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -628,38 +667,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Distributed/StudentRMI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="20" lean-forward="false" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Distributed/Student.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="20" lean-forward="false" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Distributed/ProfessorRMI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="20" lean-forward="false" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Distributed/Professor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Distributed/Pair.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -684,10 +691,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Sequential/SequentialCSMP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="12" column="10" lean-forward="true" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Sequential/StudentOptimal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="37" column="47" lean-forward="false" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Distributed/ProfessorRMI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="8" column="52" lean-forward="false" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Distributed/StudentRMI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="11" column="15" lean-forward="false" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Distributed/Professor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="581">
+          <caret line="88" column="70" lean-forward="false" selection-start-line="88" selection-start-column="70" selection-end-line="88" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Distributed/Environment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="20" />
+        <state relative-caret-position="984">
+          <caret line="71" column="56" lean-forward="false" selection-start-line="71" selection-start-column="56" selection-end-line="71" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -696,24 +743,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Distributed/StudentTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="1422">
+          <caret line="79" column="2" lean-forward="true" selection-start-line="79" selection-start-column="2" selection-end-line="79" selection-end-column="2" />
+          <folding>
+            <element signature="e#587#604#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Sequential/StudentOptimal.java">
+    <entry file="file://$PROJECT_DIR$/src/Distributed/Student.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1750">
-          <caret line="37" column="47" lean-forward="false" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Sequential/SequentialCSMP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="23" column="36" lean-forward="true" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+        <state relative-caret-position="554">
+          <caret line="176" column="70" lean-forward="true" selection-start-line="176" selection-start-column="70" selection-end-line="176" selection-end-column="70" />
           <folding />
         </state>
       </provider>

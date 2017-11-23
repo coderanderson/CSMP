@@ -52,6 +52,13 @@ public class Environment implements EnvironmentRMI {
     public void done(Message msg) {
         System.out.println("" + msg.getIndex() + " is done");
         ++studentCounter;
+        System.out.println("sum of done is" + studentCounter);
+//        try {
+//            Thread.sleep(100000);
+//        }
+//        catch(InterruptedException ex) {
+//            Thread.currentThread().interrupt();
+//        }
         if(studentCounter == numOfStudent) {
             isDone = true;
             System.out.println("Stable marriage found.");
@@ -62,6 +69,7 @@ public class Environment implements EnvironmentRMI {
     }
 
     public void undone(Message msg) {
+        System.out.println("" + msg.getIndex() + " send undone");
         studentCounter--;
     }
 

@@ -9,4 +9,5 @@ public interface StudentRMI extends Remote{
     void advance(Message msg) throws RemoteException;
     void initiate(Message msg) throws RemoteException;
     void decide(Message msg) throws RemoteException;
+    void notify(Message msg) throws RemoteException;
 }
