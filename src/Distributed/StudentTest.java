@@ -3,6 +3,8 @@ package Distributed;
 import java.util.*;
 
 public class StudentTest {
+
+
     private static Student[] initStudents(int nStudent, String EmtPeer, int EmtPort,
                                           String[] StuPeers, int[] StuPorts,
                                           String[] ProPeers, int[] ProPorts,
@@ -14,6 +16,14 @@ public class StudentTest {
         for(int i = 0; i < ProPorts.length; i++) {
             specialPrerequisite.add(new ArrayList<Pair>());
         }
+
+//        for(int i = 0; i < ProPeers.length; i++) {
+//            if(i == 1) continue;
+//            for(int j = 0; j < ProPeers.length; j++) {
+//                specialPrerequisite.get(j).add(new Pair(i, studentPreference[i][j]));
+//            }
+//        }
+
         specialPrerequisite.get(0).add(new Pair(0, 6));
         specialPrerequisite.get(1).add(new Pair(0, 8));
         specialPrerequisite.get(2).add(new Pair(0, 2));

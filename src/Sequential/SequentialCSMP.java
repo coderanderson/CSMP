@@ -35,19 +35,9 @@ public class SequentialCSMP {
 
         for(int i = 0; i < 10; i++) {
             prerequisite[i] = new ArrayList<>();
-            //prerequisite[i].add(new PrerequisitePair(0, i));
+            prerequisite[i].add(new PrerequisitePair(0, i));
         }
 
-        prerequisite[].add(new PrerequisitePair(0, 6));
-        specialPrerequisite.get(1).add(new PrerequisitePair(0, 8));
-        specialPrerequisite.get(2).add(new PrerequisitePair(0, 2));
-        specialPrerequisite.get(3).add(new PrerequisitePair(0, 0));
-        specialPrerequisite.get(4).add(new PrerequisitePair(0, 4));
-        specialPrerequisite.get(5).add(new PrerequisitePair(0, 1));
-        specialPrerequisite.get(6).add(new PrerequisitePair(0, 3));
-        specialPrerequisite.get(7).add(new PrerequisitePair(0, 9));
-        specialPrerequisite.get(8).add(new PrerequisitePair(0, 7));
-        specialPrerequisite.get(9).add(new PrerequisitePair(0, 5));
         StudentOptimal studentOptimal = new StudentOptimal(studentPreference, professorPreference);
         studentOptimal.globalState[1].updatePrerequisite(prerequisite);
 
