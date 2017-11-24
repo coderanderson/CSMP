@@ -42,7 +42,7 @@ public class Student implements StudentRMI{
         this.existCSM = true;
         this.coupled = false;
 
-        rank = new int[pref.length];
+        rank = new int[ProPeers.length];
         for(int i = 0; i < pref.length; i++) {
             rank[pref[i]] = i;
         }
@@ -87,7 +87,8 @@ public class Student implements StudentRMI{
             else if(rmi.equals("notify"))
                 stub.notify(msg);
         } catch(Exception e) {
-            System.out.println("fail");
+            System.out.println("call professor " + id + " fail");
+            e.printStackTrace();
         }
     }
 
@@ -106,8 +107,10 @@ public class Student implements StudentRMI{
     }
 
     public void reject(Message msg) {
+        if(!existCSM) return;
         if(pref[current] == msg.getIndex()) {
             if(coupled) {
+                System.out.println("" + me + " send undone");
                 CallEnvironment("undone", new Message(me));
                 coupled = false;
             }
@@ -133,6 +136,7 @@ public class Student implements StudentRMI{
     }
 
     public void accept(Message msg) {
+        if(!existCSM) return;
         System.out.println("receive accept");
         if(msg.getIndex() == pref[current]) {
             System.out.println("" + me + " is done with " + pref[current]);
@@ -142,6 +146,7 @@ public class Student implements StudentRMI{
     }
 
     public void advance(Message msg) {
+        if(!existCSM) return;
         System.out.println("receive advance");
         System.out.println("" + rank[msg.getIndex()] + " , " + current + " , " + coupled);
         if(rank[msg.getIndex()] > current && coupled) {
@@ -168,7 +173,7 @@ public class Student implements StudentRMI{
 
     public void decide(Message msg) {
         System.out.println("Student " + me + " is decided, matched with Professor " + pref[current]);
-        existCSM = true;
+        System.out.println(coupled);
         CallProfessor("decide", new Message(me), pref[current]);
     }
 

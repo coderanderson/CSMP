@@ -54,7 +54,7 @@ public class Environment implements EnvironmentRMI {
         ++studentCounter;
         System.out.println("sum of done is" + studentCounter);
 //        try {
-//            Thread.sleep(100000);
+//            Thread.sleep(50000);
 //        }
 //        catch(InterruptedException ex) {
 //            Thread.currentThread().interrupt();
@@ -69,7 +69,7 @@ public class Environment implements EnvironmentRMI {
     }
 
     public void undone(Message msg) {
-        System.out.println("" + msg.getIndex() + " send undone");
+        //System.out.println("" + msg.getIndex() + " send undone");
         studentCounter--;
     }
 

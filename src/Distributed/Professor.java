@@ -30,7 +30,7 @@ public class Professor implements ProfessorRMI{
         this.partner = -1;
         this.existCSM = true;
 
-        rank = new int[pref.length];
+        rank = new int[StuPeers.length];
         for(int i = 0; i < pref.length; i++) {
             rank[pref[i]] = i;
         }
@@ -62,18 +62,20 @@ public class Professor implements ProfessorRMI{
     }
 
     public void propose(Message msg) {
-        System.out.println(me);
+        if(!existCSM) return;
         int studentId = msg.getIndex();
         if(partner == -1) {
+            System.out.println("" + me + " send accept to " + studentId);
             partner = studentId;
             CallStudent(new Message(me, "accept"), studentId);
-            System.out.println("send accept");
         }
         else if(rank[studentId] < rank[partner]) {
-            CallStudent(new Message(me, "reject"), partner);
+            System.out.println("" + me + " send reject to " + partner);
+            System.out.println("" + me + " send accept to " + studentId);
+            int temp = partner;
             partner = studentId;
+            CallStudent(new Message(me, "reject"), temp);
             CallStudent(new Message(me, "accept"), studentId);
-            System.out.println("send accept");
         }
         else if(rank[studentId] > rank[partner]) {
             CallStudent(new Message(me, "reject"), studentId);
@@ -81,7 +83,7 @@ public class Professor implements ProfessorRMI{
     }
 
     public void decide(Message msg) {
-        System.out.println("Professor " + me + " is decided, matched with Student " + partner);
+        //System.out.println("Professor " + me + " is decided, matched with Student " + partner);
     }
 
     public void notify(Message msg) {
